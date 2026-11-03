@@ -1,0 +1,68 @@
+<title>Киношные совместные просмотры</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<!-- Версия для claude.ai: <head> добавляет сам claude.ai. Разметка та же, что в index.html, меняйте обе. -->
+
+<main class="page">
+  <header class="hero">
+    <div class="brand">Twiglles Киношная</div>
+    <h1>Киношные<br>совместные<br>просмотры</h1>
+    <p class="month">Ноябрь 2026</p>
+    <p class="lead">Отметьтесь под фильмами, которые хотите посмотреть вместе с клубом. Кураторы увидят, на что собирается больше всего людей, и сами назначат день и кинотеатр для совместного просмотра.</p>
+
+    <ol class="how" aria-label="Как отметиться">
+      <li>
+        <span class="how-pic" aria-hidden="true"><span class="mini off"></span><span class="mini off ping"></span><span class="mini off"></span></span>
+        <span class="how-txt"><b>1</b>Нажмите на серый кружок под фильмом</span>
+      </li>
+      <li>
+        <span class="how-pic" aria-hidden="true"><span class="mini-form"><i>@</i>ваш_ник<span class="ok">✓</span></span></span>
+        <span class="how-txt"><b>2</b>Впишите свой ник в Telegram</span>
+      </li>
+      <li>
+        <span class="how-pic" aria-hidden="true"><span class="mini on"></span><span class="mini-pill">@ваш_ник</span><span class="mini off"></span></span>
+        <span class="how-txt"><b>3</b>Кружок станет красным. <span class="only-hover">Наведите</span><span class="only-touch">Нажмите</span> на него, и появится ник</span>
+      </li>
+    </ol>
+    <p class="how-note">Передумали? <span class="only-hover">Наведите на свой кружок и нажмите ×.</span><span class="only-touch">Нажмите на свой кружок, а затем на ×.</span></p>
+  </header>
+
+  <p class="note" id="note" role="status" hidden></p>
+
+  <div class="layout">
+    <section class="grid" id="grid" aria-label="Фильмы ноября"></section>
+
+    <aside class="side" aria-label="Добавить фильм">
+      <div class="find" id="find">
+        <button class="find-toggle" id="find-toggle" type="button" aria-expanded="false" aria-controls="find-form">
+          <span class="plus" aria-hidden="true">+</span>
+          <span><b>Не нашли нужный фильм?</b><small>Добавьте его сами. Он сразу появится в сетке, и под ним можно будет отметиться.</small></span>
+        </button>
+        <form class="find-form" id="find-form" hidden novalidate>
+          <label>Название
+            <input id="f-title" maxlength="80" placeholder="Например, «Бумажный тигр»" autocomplete="off">
+          </label>
+          <label>Пара слов о фильме
+            <textarea id="f-about" maxlength="180" rows="3" placeholder="Необязательно"></textarea>
+          </label>
+          <div class="find-acts">
+            <button class="btn" type="submit">Добавить фильм</button>
+            <button class="btn-ghost" type="button" id="find-cancel">Отмена</button>
+          </div>
+          <p class="find-err" id="find-err" hidden></p>
+        </form>
+        <p class="find-ok" id="find-ok" hidden></p>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="foot">Twiglles Киношная · даты премьер по Кинопоиску на 30 октября 2026 · кадры: TMDB</footer>
+</main>
+
+<script src="config.js"></script>
+<script src="films.js"></script>
+<script src="app.js"></script>
