@@ -261,7 +261,7 @@ button, input, textarea { font: inherit; color: inherit; }
 /* ---------- кружки ---------- */
 .going {
   position: relative;
-  display: flex; align-items: center; gap: 12px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
   margin-top: auto; padding-top: 14px;
   border-top: 1px solid var(--line);
 }
@@ -284,7 +284,8 @@ button, input, textarea { font: inherit; color: inherit; }
   min-height: var(--dot-open);
   min-width: 0; flex: 1;
 }
-.cnt { flex: none; color: var(--muted); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+/* Счётчик под кружками, чтобы все 10 кружков помещались в одну строку */
+.cnt { flex: 0 0 100%; margin-top: -4px; color: var(--muted); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
 
 .dot {
   flex: none;
@@ -443,7 +444,7 @@ button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation
   .find.open { border-color: var(--fg); }
 }
 @media (max-width: 600px) {
-  :root { --dot: 20px; --dot-open: 34px; }   /* кружки крупнее, чтобы попадать пальцем */
+  :root { --dot: 18px; --dot-open: 34px; }   /* кружки крупнее, чтобы попадать пальцем, но 10 штук влезают в строку */
   .page { padding-block: 28px 56px; }
   .hero { gap: 12px; }
   .lead { font-size: 14.5px; }
@@ -452,7 +453,7 @@ button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation
   .sep { margin-bottom: -22px; }
   .title { font-size: 18px; }
   .still { border-radius: 10px; }
-  .dots { gap: 10px; }
+  .dots { gap: 8px; }
   .dot.on { font-size: 14px; }
   .dot.on:hover, .dot.on.open, .dot.on:focus-visible, .dot.on:focus-within { padding: 0 14px; }
   .dot.me .x { width: 26px; height: 26px; margin-right: -9px; font-size: 15px; }

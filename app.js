@@ -15,7 +15,7 @@ const kpLink = f => /^\d+$/.test(f.id)
   : `https://www.kinopoisk.ru/index.php?kp_query=${encodeURIComponent(f.original || f.title)}`;
 
 // Сколько кружков показывать, пока желающих меньше. На телефоне кружки крупнее, поэтому их меньше.
-const SLOTS = matchMedia("(max-width: 600px)").matches ? (CFG.slotsPhone || 6) : (CFG.slots || 8);
+const SLOTS = matchMedia("(max-width: 600px)").matches ? (CFG.slotsPhone || 10) : (CFG.slots || 10);
 const GOAL = Number(CFG.groupSize) || 5;  // сколько человек нужно для группы
 const NICK_RE = /^[A-Za-z0-9_]{4,32}$/;
 const NICK_KEY = "kino.together.tg";        // ник, запомненный в браузере
@@ -208,8 +208,9 @@ function renderDots(c) {
   const n = people.length, full = n >= GOAL;
   c.go.style.setProperty("--p", Math.min(n / GOAL, 1));
   c.go.classList.toggle("full", full);
-  c.cnt.textContent = full ? "Группа собрана" : `${n} из ${GOAL}`;
-  c.cnt.title = full ? "" : `Нужно ${GOAL} ${peopleWord(GOAL)}, чтобы кураторы собрали группу`;
+  // Порог — минимум: после него счётчик продолжает расти
+  c.cnt.textContent = full ? `${n} — группа собрана` : `${n} из ${GOAL}`;
+  c.cnt.title = `Нужно минимум ${GOAL} ${peopleWord(GOAL)}, чтобы кураторы собрали группу`;
   c.mineNote.hidden = !mine;
   c.mineNote.textContent = full
     ? "Группа собрана! Куратор скоро напишет вам в Telegram."
