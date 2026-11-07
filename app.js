@@ -210,11 +210,11 @@ function renderDots(c) {
   c.go.classList.toggle("full", full);
   // Порог — минимум: после него счётчик продолжает расти
   c.cnt.textContent = full ? `${n} — группа собрана` : `${n} из ${GOAL}`;
-  c.cnt.title = `Нужно минимум ${GOAL} ${peopleWord(GOAL)}, чтобы кураторы собрали группу`;
+  c.cnt.title = `Нужно минимум ${GOAL} ${peopleWord(GOAL)}, чтобы организаторы собрали группу`;
   c.mineNote.hidden = !mine;
   c.mineNote.textContent = full
-    ? "Группа собрана! Куратор скоро напишет вам в Telegram."
-    : "Вы в списке. Когда наберётся группа, куратор напишет вам в Telegram.";
+    ? "Группа собрана! Организатор скоро напишет вам в Telegram."
+    : "Вы в списке. Когда наберётся группа, организатор напишет вам в Telegram.";
 }
 
 function nickForm(c) {
