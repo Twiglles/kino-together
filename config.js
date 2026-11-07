@@ -14,6 +14,9 @@ window.TOGETHER_CONFIG = {
   slots: 8,
   slotsPhone: 6,
 
+  // Сколько человек нужно, чтобы кураторы собрали группу на фильм. Под каждым фильмом видно «2 из 5» и полоску прогресса.
+  groupSize: 5,
+
   firebase: {
     apiKey: "AIzaSyCsDkUKyD5MsrFk4wjQMQennsXklNWk7KM",
     authDomain: "twiglles-kinoshnaya.firebaseapp.com",

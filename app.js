@@ -16,6 +16,7 @@ const kpLink = f => /^\d+$/.test(f.id)
 
 // Сколько кружков показывать, пока желающих меньше. На телефоне кружки крупнее, поэтому их меньше.
 const SLOTS = matchMedia("(max-width: 600px)").matches ? (CFG.slotsPhone || 6) : (CFG.slots || 8);
+const GOAL = Number(CFG.groupSize) || 5;  // сколько человек нужно для группы
 const NICK_RE = /^[A-Za-z0-9_]{4,32}$/;
 const NICK_KEY = "kino.together.tg";        // ник, запомненный в браузере
 const DEMO_KEY = "kino.together.demo";      // хранилище демо-режима
@@ -52,8 +53,9 @@ function fmtDate(iso) {
   const dt = new Date(y, m - 1, d);
   return { day: `${d} ${MONTHS[m - 1]}` + (y !== 2026 ? ` ${y}` : ""), wd: WD[dt.getDay()] };
 }
-function plural(n) {
-  return n % 10 === 1 && n % 100 !== 11 ? "идёт" : "идут";
+function peopleWord(n) {
+  const m10 = n % 10, m100 = n % 100;
+  return m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? "человека" : "человек";
 }
 
 /* ---------- фильмы: свои + добавленные участниками ---------- */
@@ -137,12 +139,17 @@ function buildCard(f) {
   go.append(dots, cnt);
   body.append(go);
 
+  // Что будет дальше — видно только тому, кто отметился
+  const mineNote = document.createElement("p");
+  mineNote.className = "mine-note"; mineNote.hidden = true;
+  body.append(mineNote);
+
   const hint = document.createElement("p");
   hint.className = "hint"; hint.hidden = true;
   body.append(hint);
 
   el.append(still, body);
-  return { el, dots, cnt, hint, film: f };
+  return { el, go, dots, cnt, mineNote, hint, film: f };
 }
 
 function renderDots(c) {
@@ -197,7 +204,16 @@ function renderDots(c) {
     c.dots.append(b);
   }
 
-  c.cnt.textContent = people.length ? `${people.length} ${plural(people.length)}` : "";
+  // Цель вместо голого счётчика: первый отметившийся видит, что начал сбор группы
+  const n = people.length, full = n >= GOAL;
+  c.go.style.setProperty("--p", Math.min(n / GOAL, 1));
+  c.go.classList.toggle("full", full);
+  c.cnt.textContent = full ? "Группа собрана" : `${n} из ${GOAL}`;
+  c.cnt.title = full ? "" : `Нужно ${GOAL} ${peopleWord(GOAL)}, чтобы кураторы собрали группу`;
+  c.mineNote.hidden = !mine;
+  c.mineNote.textContent = full
+    ? "Группа собрана! Куратор скоро напишет вам в Telegram."
+    : "Вы в списке. Когда наберётся группа, куратор напишет вам в Telegram.";
 }
 
 function nickForm(c) {
@@ -495,6 +511,7 @@ function startDemo(text) {
 }
 
 async function start() {
+  document.querySelectorAll(".goal-txt").forEach(el => { el.textContent = `${GOAL} ${peopleWord(GOAL)}`; });
   render();
   const c = window.claude;
   const fb = CFG.firebase || {};

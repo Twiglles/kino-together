@@ -260,11 +260,24 @@ button, input, textarea { font: inherit; color: inherit; }
 
 /* ---------- кружки ---------- */
 .going {
+  position: relative;
   display: flex; align-items: center; gap: 12px;
   margin-top: auto; padding-top: 14px;
   border-top: 1px solid var(--line);
 }
-.body > :nth-last-child(3) { margin-bottom: 8px; } /* воздух над линией с кружками */
+/* Красная полоска поверх линии: сколько набралось до группы */
+.going::before {
+  content: "";
+  position: absolute; left: 0; top: -1px;
+  width: calc(var(--p, 0) * 100%); height: 2px;
+  background: var(--red);
+  transition: width .5s var(--ease);
+}
+.going.full .cnt { color: var(--fg); }
+.body > :nth-last-child(4) { margin-bottom: 8px; } /* воздух над линией с кружками */
+/* Строка «Вы в списке» стоит над линией, чтобы линии с кружками в ряду оставались на одной высоте */
+.mine-note { order: 1; margin: 0 0 6px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.going, .hint { order: 2; }
 .dots {
   display: flex; flex-wrap: wrap; align-items: center;
   gap: 7px 9px;
