@@ -257,15 +257,17 @@ function stopEdit() {
   if (prev && cards.has(prev)) { cards.get(prev).hint.hidden = true; renderDots(cards.get(prev)); }
 }
 
-/* Группы для перегородок: премьеры первой и второй половины месяца, без даты, от участников */
+/* Группы для перегородок: премьеры в России по половинам месяца, без даты, онлайн, от участников */
 function groupKey(f) {
   if (f.user) return "user";
+  if (f.online) return "online";
   if (!f.cinema) return "tba";
-  return Number(f.cinema.slice(8, 10)) <= 15 ? "early" : "late";
+  return `c:${f.cinema.slice(0, 7)}:${Number(f.cinema.slice(8, 10)) <= 15 ? 1 : 2}`;
 }
 function groupLabel(key, films) {
   if (key === "user") return "Предложили участники";
   if (key === "tba") return "Премьера в России пока не назначена";
+  if (key === "online") return "Онлайн · " + [...new Set(films.map(f => f.online))].join(", ");
   const days = films.map(f => f.cinema).sort();
   const a = fmtDate(days[0]).day, b = fmtDate(days[days.length - 1]).day;
   if (a === b) return `Премьера ${a}`;
@@ -279,7 +281,8 @@ function render() {
   const ids = new Set(films.map(f => f.id));
   for (const [id, c] of cards) if (!ids.has(id)) { c.el.remove(); cards.delete(id); }
 
-  const order = ["early", "late", "tba", "user"];
+  const byDate = [...new Set(films.map(groupKey).filter(k => k.startsWith("c:")))].sort();
+  const order = [...byDate, "tba", "online", "user"];
   const groups = order.map(k => ({ k, films: films.filter(f => groupKey(f) === k) })).filter(g => g.films.length);
   const seq = [];
   for (const g of groups) {

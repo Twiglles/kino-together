@@ -4,6 +4,7 @@
             Если номера нет, подойдёт короткое латинское слово: ссылка тогда ведёт на поиск Кинопоиска.
   cinema  — премьера в кинотеатрах России, digital — в цифре (null = дата пока не объявлена).
             На карточках даты не показываются, по ним фильмы делятся на группы с перегородками.
+  online  — платформа для фильмов, которые выходят только онлайн (Netflix, Apple TV). Такие фильмы идут в группу «Онлайн».
   still   — кадр, лежит рядом в папке stills/.
 */
 window.TOGETHER_FILMS = [
@@ -33,5 +34,39 @@ window.TOGETHER_FILMS = [
   // В мире вышел 23 октября, в российский прокат официально не заявлен.
   { id: "clayface", title: "Глиноликий", original: "Clayface", genre: "ужасы",
     about: "Восходящей звезде кино изуродовали лицо. Он соглашается на экспериментальное лечение, и теперь его тело можно лепить, как глину. Боди-хоррор DC о злодее из мира Бэтмена.",
-    cinema: null, digital: null, still: "stills/clayface.jpg" }
+    cinema: null, digital: null, still: "stills/clayface.jpg" },
+  // Дальше — фильмы, добавленные 7 ноября. В мировом прокате с 13 ноября.
+  { id: "ebenezer", title: "Эбенезер", original: "Ebenezer", genre: "фэнтези", runtime: 115,
+    about: "Скупого старика Скруджа в канун Рождества навещают призраки прошлого, настоящего и будущего. Джонни Депп в главной роли, режиссёр Тай Уэст.",
+    cinema: null, digital: null, still: "stills/ebenezer.jpg" },
+  // В мире 25 ноября, русское название по TMDB (на VGTimes — «Очарованная»).
+  { id: "hexed", title: "Билли и мир магии", original: "Hexed", genre: "мультфильм", runtime: 103,
+    about: "Школьница Билли узнаёт, что владеет магией, и вместе с мамой попадает в огромный мир ведьм. Новый мультфильм Disney.",
+    cinema: null, digital: null, still: "stills/hexed.jpg" },
+  // В мире 25–26 ноября.
+  { id: "focker-in-law", title: "Знакомство с Факерами: Новая глава", original: "Focker-in-Law", genre: "комедия", runtime: 105,
+    about: "Сын Грега и Пэм Факеров собирается жениться, и семья снова погружается в хаос. Бен Стиллер, Роберт Де Ниро и Ариана Гранде.",
+    cinema: null, digital: null, still: "stills/focker-in-law.jpg" },
+  // В мире 25 ноября в IMAX, на Netflix с 23 декабря.
+  { id: "cliff-booth", title: "Новые похождения Клиффа Бута", original: "The Adventures of Cliff Booth", genre: "драма, триллер",
+    about: "Брэд Питт снова играет каскадёра Клиффа Бута, который теперь решает чужие проблемы в тени голливудских студий. Режиссёр Дэвид Финчер, сценарий Квентина Тарантино.",
+    cinema: null, digital: "2026-12-23", still: "stills/cliff-booth.jpg" },
+  // В мире 4 декабря.
+  { id: "behemoth", title: "Бегемот!", original: "Behemoth!", genre: "драма, музыка", runtime: 127,
+    about: "Виолончелист возвращается в Лос-Анджелес после двадцати лет гастролей, и музыка втягивает его в приключение. Педро Паскаль в фильме Тони Гилроя.",
+    cinema: null, digital: null, still: "stills/behemoth.jpg" },
+  { id: "wildwood", title: "Ведьмин лес", original: "Wildwood", genre: "мультфильм, фэнтези", runtime: 132,
+    about: "Девочка Прю отправляется в волшебный лес, чтобы спасти младшего брата, которого похитила стая ворон. Кукольная анимация студии Laika.",
+    cinema: "2026-12-03", digital: null, still: "stills/wildwood.jpg" },
+
+  // Онлайн: online — платформа, digital — дата выхода на ней.
+  { id: "possible-love", title: "Что, если любовь", original: "Possible Love", genre: "драма", runtime: 165,
+    about: "Уволенный рабочий и его жена знакомятся с документалисткой и её мужем, и всем четверым приходится признаться себе в тайных желаниях. Первый за восемь лет фильм Ли Чхан-дона.",
+    cinema: null, digital: "2026-11-06", online: "Netflix", still: "stills/possible-love.jpg" },
+  { id: "heartland", title: "Heartland", genre: "триллер",
+    about: "Бывшая звезда кантри ищет пропавшую племянницу и открывает тёмную сторону Нэшвилла. В главной роли Джессика Честейн, песни она поёт сама.",
+    cinema: null, digital: "2026-11-13", online: "Netflix", still: "stills/heartland.jpg" },
+  { id: "warrior-kid", title: "Путь мальчика-воина", original: "Way of the Warrior Kid", genre: "драма, семейный", runtime: 106,
+    about: "Раненый морской котик помогает застенчивому племяннику справиться с травлей в школе. Крис Пратт в главной роли.",
+    cinema: null, digital: "2026-11-25", online: "Apple TV", still: "stills/warrior-kid.jpg" }
 ];
