@@ -60,9 +60,12 @@ function peopleWord(n) {
 
 /* ---------- фильмы: свои + добавленные участниками ---------- */
 function allFilms() {
+  // Фильм участников, перенесённый в films.js с тем же id, показываем один раз — обычной карточкой
+  const own = new Set(FILMS.map(f => f.id));
   const extra = [];
   for (const [uid, rec] of Object.entries(added)) {
     for (const [fid, f] of Object.entries(rec?.films || {})) {
+      if (own.has(fid)) continue;
       if (f && typeof f.title === "string" && f.title.trim()) extra.push({ ...f, id: fid, by: uid, user: true });
     }
   }

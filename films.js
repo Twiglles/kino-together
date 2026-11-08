@@ -55,6 +55,13 @@ window.TOGETHER_FILMS = [
   { id: "behemoth", title: "Бегемот!", original: "Behemoth!", genre: "драма, музыка", runtime: 127,
     about: "Виолончелист возвращается в Лос-Анджелес после двадцати лет гастролей, и музыка втягивает его в приключение. Педро Паскаль в фильме Тони Гилроя.",
     cinema: null, digital: null, still: "stills/behemoth.jpg" },
+  // Предложили участники 7 ноября. id оставлен тот, что выдал сайт, — к нему привязаны отметки.
+  { id: "umw7cdyld8qtg", title: "Песни джиннов", genre: "драма, музыкальный", runtime: 93,
+    about: "Волшебная новогодняя ночь в индийском Варанаси: две актрисы бродят по городу и говорят обо всём на свете. Новый фильм Романа Михайлова.",
+    cinema: "2026-12-10", digital: null, still: "stills/pesni-dzhinnov.jpg" },
+  { id: "umw7civq55b7a", title: "Прозрачные земли", genre: "фэнтези, драма", runtime: 94,
+    about: "В заброшенной деревне доживают век три старика. Однажды они находят во льду реки замёрзшего юношу, и он оживает. Фильм Дмитрия Давыдова.",
+    cinema: null, digital: null, still: "stills/prozrachnye-zemli.jpg" },
   { id: "wildwood", title: "Ведьмин лес", original: "Wildwood", genre: "мультфильм, фэнтези", runtime: 132,
     about: "Девочка Прю отправляется в волшебный лес, чтобы спасти младшего брата, которого похитила стая ворон. Кукольная анимация студии Laika.",
     cinema: "2026-12-03", digital: null, still: "stills/wildwood.jpg" },
